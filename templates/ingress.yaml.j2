@@ -1,0 +1,31 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-server
+  namespace: {{ prometheus_namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ prometheus_ingress_class }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: "Host(`{{ prometheus_fqdn }}`)"
+      priority: 10
+      services:
+        - name: prometheus-grafana@kubernetescrd
+          port: 80
+          sticky:
+            cookie:
+              httpOnly: true
+              name: prometheus-grafana
+              secure: true
+              sameSite: none
+  chain:
+    middlewares:
+      - name: default-default@kubernetescrd
+{% if prometheus_certmanager_enable %}
+  tls:
+    secretName: {{ prometheus_certmanager_secret }}
+{% endif %}

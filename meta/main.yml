@@ -1,0 +1,18 @@
+---
+dependencies: []
+galaxy_info:
+  author: Julian Easterling
+  description: Ansible role to deploy prometheus monitoring system into a Kubernetes cluster.
+  galaxy_tags:
+    - prometheus
+    - kubernetes
+    - k8s
+    - dcjulian29
+  license: Apache-2.0
+  min_ansible_version: "2.16.7"
+  namespace: dcjulian29
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+  role_name: k8s_prometheus

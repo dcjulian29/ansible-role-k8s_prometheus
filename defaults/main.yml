@@ -1,0 +1,143 @@
+---
+k8s_config: "{{ lookup('ansible.builtin.env', 'K8S_AUTH_KUBECONFIG', default=undef()) }}"
+k8s_context: "{{ lookup('ansible.builtin.env', 'K8S_AUTH_CONTEXT', default=undef()) }}"
+prometheus_admin_pass: prom-operator
+prometheus_admin_secret: grafana-admin-credentials
+prometheus_admin_user: admin
+prometheus_alert_keep_firing_for: ""
+prometheus_annotations: {}
+prometheus_annotations_alertmanager: {}
+prometheus_cadvisor: true
+prometheus_certmanager_enable: false
+prometheus_certmanager_secret: prometheus-ui-secret
+prometheus_chart_ref: prometheus-community/kube-prometheus-stack
+prometheus_chart_ref_cadvisor: ckotzbauer/cadvisor
+prometheus_customrules: {}
+  # alertmanagerfailedreload:
+  #   for: 3m
+  # alertmanagermembersinconsistent:
+  #   for: 5m
+  #   severity: "warning"
+prometheus_default_rules_alertmanager: true
+prometheus_default_rules_annotations: {}
+prometheus_default_rules_configreloaders: true
+prometheus_default_rules_create: true
+prometheus_default_rules_etcd: true
+prometheus_default_rules_general: true
+prometheus_default_rules_k8scontainercpuusagesecondstotal: true
+prometheus_default_rules_k8scontainermemorycache: true
+prometheus_default_rules_k8scontainermemoryrss: true
+prometheus_default_rules_k8scontainermemoryswap: true
+prometheus_default_rules_k8scontainermemoryworkingsetbytes: true
+prometheus_default_rules_k8scontainerresource: true
+prometheus_default_rules_k8spodowner: true
+prometheus_default_rules_kubeapiserveravailability: true
+prometheus_default_rules_kubeapiserverburnrate: true
+prometheus_default_rules_kubeapiserverhistogram: true
+prometheus_default_rules_kubeapiserverslos: true
+prometheus_default_rules_kubecontrollermanager: true
+prometheus_default_rules_kubelet: true
+prometheus_default_rules_kubeproxy: true
+prometheus_default_rules_kubeprometheusgeneral: true
+prometheus_default_rules_kubeprometheusnoderecording: true
+prometheus_default_rules_kubernetesapps: true
+prometheus_default_rules_kubernetesresources: true
+prometheus_default_rules_kubernetesstorage: true
+prometheus_default_rules_kubernetessystem: true
+prometheus_default_rules_kubescheduleralerting: true
+prometheus_default_rules_kubeschedulerrecording: true
+prometheus_default_rules_kubestatemetrics: true
+prometheus_default_rules_labels: {}
+prometheus_default_rules_network: true
+prometheus_default_rules_node: true
+prometheus_default_rules_nodeexporteralerting: true
+prometheus_default_rules_nodeexporterrecording: true
+prometheus_default_rules_prometheus: true
+prometheus_default_rules_prometheusoperator: true
+prometheus_default_rules_windows: true
+prometheus_fqdn: "grafana.example.com"
+prometheus_grafana_dashboard_timezone: utc
+prometheus_grafana_enable: true
+prometheus_grafana_enable_default_dashboard: true
+prometheus_helm_repositories:
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+  - name: ckotzbauer
+    url: https://ckotzbauer.github.io/helm-charts
+prometheus_ingress_class: traefik
+prometheus_labels: {}
+prometheus_name: prometheus
+prometheus_name_cadvisor: cadvisor
+prometheus_namespace: monitoring
+prometheus_namespaces_target: ".*"
+prometheus_rule_annotations: {}
+prometheus_rule_group_annotations_alertmanager: {}
+prometheus_rule_group_annotations_configreloaders: {}
+prometheus_rule_group_annotations_etcd: {}
+prometheus_rule_group_annotations_general: {}
+prometheus_rule_group_annotations_k8scontainercpuusagesecondstotal: {}
+prometheus_rule_group_annotations_k8scontainermemorycache: {}
+prometheus_rule_group_annotations_k8scontainermemoryrss: {}
+prometheus_rule_group_annotations_k8scontainermemoryswap: {}
+prometheus_rule_group_annotations_k8scontainerresource: {}
+prometheus_rule_group_annotations_k8spodowner: {}
+prometheus_rule_group_annotations_kubeapiserveravailability: {}
+prometheus_rule_group_annotations_kubeapiserverburnrate: {}
+prometheus_rule_group_annotations_kubeapiserverhistogram: {}
+prometheus_rule_group_annotations_kubeapiserverslos: {}
+prometheus_rule_group_annotations_kubecontrollermanager: {}
+prometheus_rule_group_annotations_kubelet: {}
+prometheus_rule_group_annotations_kubeproxy: {}
+prometheus_rule_group_annotations_kubeprometheusgeneral: {}
+prometheus_rule_group_annotations_kubeprometheusnoderecording: {}
+prometheus_rule_group_annotations_kubernetesapps: {}
+prometheus_rule_group_annotations_kubernetesresources: {}
+prometheus_rule_group_annotations_kubernetesstorage: {}
+prometheus_rule_group_annotations_kubernetessystem: {}
+prometheus_rule_group_annotations_kubescheduleralerting: {}
+prometheus_rule_group_annotations_kubeschedulerrecording: {}
+prometheus_rule_group_annotations_kubestatemetrics: {}
+prometheus_rule_group_annotations_network: {}
+prometheus_rule_group_annotations_node: {}
+prometheus_rule_group_annotations_nodeexporteralerting: {}
+prometheus_rule_group_annotations_nodeexporterrecording: {}
+prometheus_rule_group_annotations_prometheus: {}
+prometheus_rule_group_annotations_prometheusoperator: {}
+prometheus_rule_group_labels_alertmanager: {}
+prometheus_rule_group_labels_configreloaders: {}
+prometheus_rule_group_labels_etcd: {}
+prometheus_rule_group_labels_general: {}
+prometheus_rule_group_labels_k8scontainercpuusagesecondstotal: {}
+prometheus_rule_group_labels_k8scontainermemorycache: {}
+prometheus_rule_group_labels_k8scontainermemoryrss: {}
+prometheus_rule_group_labels_k8scontainermemoryswap: {}
+prometheus_rule_group_labels_k8scontainerresource: {}
+prometheus_rule_group_labels_k8spodowner: {}
+prometheus_rule_group_labels_kubeapiserveravailability: {}
+prometheus_rule_group_labels_kubeapiserverburnrate: {}
+prometheus_rule_group_labels_kubeapiserverhistogram: {}
+prometheus_rule_group_labels_kubeapiserverslos: {}
+prometheus_rule_group_labels_kubecontrollermanager: {}
+prometheus_rule_group_labels_kubelet: {}
+prometheus_rule_group_labels_kubeproxy: {}
+prometheus_rule_group_labels_kubeprometheusgeneral: {}
+prometheus_rule_group_labels_kubeprometheusnoderecording: {}
+prometheus_rule_group_labels_kubernetesapps: {}
+prometheus_rule_group_labels_kubernetesresources: {}
+prometheus_rule_group_labels_kubernetesstorage: {}
+prometheus_rule_group_labels_kubernetessystem: {}
+prometheus_rule_group_labels_kubescheduleralerting: {}
+prometheus_rule_group_labels_kubeschedulerrecording: {}
+prometheus_rule_group_labels_kubestatemetrics: {}
+prometheus_rule_group_labels_network: {}
+prometheus_rule_group_labels_node: {}
+prometheus_rule_group_labels_nodeexporteralerting: {}
+prometheus_rule_group_labels_nodeexporterrecording: {}
+prometheus_rule_group_labels_prometheus: {}
+prometheus_rule_group_labels_prometheusoperator: {}
+prometheus_rule_labels: {}
+prometheus_ui_expose: false
+prometheus_version: 70.2.1
+prometheus_version_cadvisor: 2.3.3

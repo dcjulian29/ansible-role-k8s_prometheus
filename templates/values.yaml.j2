@@ -1,0 +1,121 @@
+labels: {{ prometheus_labels }}
+annotations: {{ prometheus_annotations }}
+customRules: {}
+defaultRules:
+  create: {{ prometheus_default_rules_create }}
+  rules:
+    alertmanager: {{ prometheus_default_rules_alertmanager | to_json }}
+    etcd: {{ prometheus_default_rules_etcd | to_json }}
+    configReloaders: {{ prometheus_default_rules_configreloaders | to_json }}
+    general: {{ prometheus_default_rules_general | to_json }}
+    k8sContainerCpuUsageSecondsTotal: {{ prometheus_default_rules_k8scontainercpuusagesecondstotal | to_json }}
+    k8sContainerMemoryCache: {{ prometheus_default_rules_k8scontainermemorycache | to_json }}
+    k8sContainerMemoryRss: {{ prometheus_default_rules_k8scontainermemoryrss | to_json }}
+    k8sContainerMemorySwap: {{ prometheus_default_rules_k8scontainermemoryswap | to_json }}
+    k8sContainerResource: {{ prometheus_default_rules_k8scontainerresource | to_json }}
+    k8sContainerMemoryWorkingSetBytes: {{ prometheus_default_rules_k8scontainermemoryworkingsetbytes | to_json }}
+    k8sPodOwner: {{ prometheus_default_rules_k8spodowner | to_json }}
+    kubeApiserverAvailability: {{ prometheus_default_rules_kubeapiserveravailability | to_json }}
+    kubeApiserverBurnrate: {{ prometheus_default_rules_kubeapiserverburnrate | to_json }}
+    kubeApiserverHistogram: {{ prometheus_default_rules_kubeapiserverhistogram | to_json }}
+    kubeApiserverSlos: {{ prometheus_default_rules_kubeapiserverslos | to_json }}
+    kubeControllerManager: {{ prometheus_default_rules_kubecontrollermanager | to_json }}
+    kubelet: {{ prometheus_default_rules_kubelet | to_json }}
+    kubeProxy: {{ prometheus_default_rules_kubeproxy | to_json }}
+    kubePrometheusGeneral: {{ prometheus_default_rules_kubeprometheusgeneral | to_json }}
+    kubePrometheusNodeRecording: {{ prometheus_default_rules_kubeprometheusnoderecording | to_json }}
+    kubernetesApps: {{ prometheus_default_rules_kubernetesapps | to_json }}
+    kubernetesResources: {{ prometheus_default_rules_kubernetesresources | to_json }}
+    kubernetesStorage: {{ prometheus_default_rules_kubernetesstorage | to_json }}
+    kubernetesSystem: {{ prometheus_default_rules_kubernetessystem | to_json }}
+    kubeSchedulerAlerting: {{ prometheus_default_rules_kubescheduleralerting | to_json }}
+    kubeSchedulerRecording: {{ prometheus_default_rules_kubeschedulerrecording | to_json }}
+    kubeStateMetrics: {{ prometheus_default_rules_kubestatemetrics | to_json }}
+    network: {{ prometheus_default_rules_network | to_json }}
+    node: {{ prometheus_default_rules_node | to_json }}
+    nodeExporterAlerting: {{ prometheus_default_rules_nodeexporteralerting | to_json }}
+    nodeExporterRecording: {{ prometheus_default_rules_nodeexporterrecording | to_json }}
+    prometheus: {{ prometheus_default_rules_prometheus | to_json }}
+    prometheusOperator: {{ prometheus_default_rules_prometheusoperator | to_json }}
+    windows: {{ prometheus_default_rules_windows | to_json }}
+  appNamespacesTarget: {{ prometheus_namespaces_target | quote }}
+  keepFiringFor: {{ prometheus_alert_keep_firing_for | quote }}
+  labels: {{ prometheus_default_rules_labels | to_yaml }}
+  annotations: {{ prometheus_default_rules_annotations | to_yaml }}
+  additionalRuleLabels: {{ prometheus_rule_labels | to_yaml }}
+  additionalRuleGroupLabels:
+    alertmanager: {{ prometheus_rule_group_labels_alertmanager | to_yaml }}
+    etcd: {{ prometheus_rule_group_labels_etcd | to_yaml }}
+    configReloaders: {{ prometheus_rule_group_labels_configreloaders | to_yaml }}
+    general: {{ prometheus_rule_group_labels_general | to_yaml }}
+    k8sContainerCpuUsageSecondsTotal: {{ prometheus_rule_group_labels_k8scontainercpuusagesecondstotal | to_yaml }}
+    k8sContainerMemoryCache: {{ prometheus_rule_group_labels_k8scontainermemorycache | to_yaml }}
+    k8sContainerMemoryRss: {{ prometheus_rule_group_labels_k8scontainermemoryrss | to_yaml }}
+    k8sContainerMemorySwap: {{ prometheus_rule_group_labels_k8scontainermemoryswap | to_yaml }}
+    k8sContainerResource: {{ prometheus_rule_group_labels_k8scontainerresource | to_yaml }}
+    k8sPodOwner: {{ prometheus_rule_group_labels_k8spodowner | to_yaml }}
+    kubeApiserverAvailability: {{ prometheus_rule_group_labels_kubeapiserveravailability | to_yaml }}
+    kubeApiserverBurnrate: {{ prometheus_rule_group_labels_kubeapiserverburnrate | to_yaml }}
+    kubeApiserverHistogram: {{ prometheus_rule_group_labels_kubeapiserverhistogram | to_yaml }}
+    kubeApiserverSlos: {{ prometheus_rule_group_labels_kubeapiserverslos | to_yaml }}
+    kubeControllerManager: {{ prometheus_rule_group_labels_kubecontrollermanager | to_yaml }}
+    kubelet: {{ prometheus_rule_group_labels_kubelet | to_yaml }}
+    kubeProxy: {{ prometheus_rule_group_labels_kubeproxy | to_yaml }}
+    kubePrometheusGeneral: {{ prometheus_rule_group_labels_kubeprometheusgeneral | to_yaml }}
+    kubePrometheusNodeRecording: {{ prometheus_rule_group_labels_kubeprometheusnoderecording | to_yaml }}
+    kubernetesApps: {{ prometheus_rule_group_labels_kubernetesapps | to_yaml }}
+    kubernetesResources: {{ prometheus_rule_group_labels_kubernetesresources | to_yaml }}
+    kubernetesStorage: {{ prometheus_rule_group_labels_kubernetesstorage | to_yaml }}
+    kubernetesSystem: {{ prometheus_rule_group_labels_kubernetessystem | to_yaml }}
+    kubeSchedulerAlerting: {{ prometheus_rule_group_labels_kubescheduleralerting | to_yaml }}
+    kubeSchedulerRecording: {{ prometheus_rule_group_labels_kubeschedulerrecording | to_yaml }}
+    kubeStateMetrics: {{ prometheus_rule_group_labels_kubestatemetrics | to_yaml }}
+    network: {{ prometheus_rule_group_labels_network | to_yaml }}
+    node: {{ prometheus_rule_group_labels_node | to_yaml }}
+    nodeExporterAlerting: {{ prometheus_rule_group_labels_nodeexporteralerting | to_yaml }}
+    nodeExporterRecording: {{ prometheus_rule_group_labels_nodeexporterrecording | to_yaml }}
+    prometheus: {{ prometheus_rule_group_labels_prometheus | to_yaml }}
+    prometheusOperator: {{ prometheus_rule_group_labels_prometheusoperator | to_yaml }}
+  additionalRuleGroupAnnotations:
+    alertmanager: {{ prometheus_rule_group_annotations_alertmanager | to_yaml }}
+    etcd: {{ prometheus_rule_group_annotations_etcd | to_yaml }}
+    configReloaders: {{ prometheus_rule_group_annotations_configreloaders | to_yaml }}
+    general: {{ prometheus_rule_group_annotations_general | to_yaml }}
+    k8sContainerCpuUsageSecondsTotal: {{ prometheus_rule_group_annotations_k8scontainercpuusagesecondstotal | to_yaml }}
+    k8sContainerMemoryCache: {{ prometheus_rule_group_annotations_k8scontainermemorycache | to_yaml }}
+    k8sContainerMemoryRss: {{ prometheus_rule_group_annotations_k8scontainermemoryrss | to_yaml }}
+    k8sContainerMemorySwap: {{ prometheus_rule_group_annotations_k8scontainermemoryswap | to_yaml }}
+    k8sContainerResource: {{ prometheus_rule_group_annotations_k8scontainerresource | to_yaml }}
+    k8sPodOwner: {{ prometheus_rule_group_annotations_k8spodowner | to_yaml }}
+    kubeApiserverAvailability: {{ prometheus_rule_group_annotations_kubeapiserveravailability | to_yaml }}
+    kubeApiserverBurnrate: {{ prometheus_rule_group_annotations_kubeapiserverburnrate | to_yaml }}
+    kubeApiserverHistogram: {{ prometheus_rule_group_annotations_kubeapiserverhistogram | to_yaml }}
+    kubeApiserverSlos: {{ prometheus_rule_group_annotations_kubeapiserverslos | to_yaml }}
+    kubeControllerManager: {{ prometheus_rule_group_annotations_kubecontrollermanager | to_yaml }}
+    kubelet: {{ prometheus_rule_group_annotations_kubelet | to_yaml }}
+    kubeProxy: {{ prometheus_rule_group_annotations_kubeproxy | to_yaml }}
+    kubePrometheusGeneral: {{ prometheus_rule_group_annotations_kubeprometheusgeneral | to_yaml }}
+    kubePrometheusNodeRecording: {{ prometheus_rule_group_annotations_kubeprometheusnoderecording | to_yaml }}
+    kubernetesApps: {{ prometheus_rule_group_annotations_kubernetesapps | to_yaml }}
+    kubernetesResources: {{ prometheus_rule_group_annotations_kubernetesresources | to_yaml }}
+    kubernetesStorage: {{ prometheus_rule_group_annotations_kubernetesstorage | to_yaml }}
+    kubernetesSystem: {{ prometheus_rule_group_annotations_kubernetessystem | to_yaml }}
+    kubeSchedulerAlerting: {{ prometheus_rule_group_annotations_kubescheduleralerting | to_yaml }}
+    kubeSchedulerRecording: {{ prometheus_rule_group_annotations_kubeschedulerrecording | to_yaml }}
+    kubeStateMetrics: {{ prometheus_rule_group_annotations_kubestatemetrics | to_yaml }}
+    network: {{ prometheus_rule_group_annotations_network | to_yaml }}
+    node: {{ prometheus_rule_group_annotations_node | to_yaml }}
+    nodeExporterAlerting: {{ prometheus_rule_group_annotations_nodeexporteralerting | to_yaml }}
+    nodeExporterRecording: {{ prometheus_rule_group_annotations_nodeexporterrecording | to_yaml }}
+    prometheus: {{ prometheus_rule_group_annotations_prometheus | to_yaml }}
+    prometheusOperator: {{ prometheus_rule_group_annotations_prometheusoperator | to_yaml }}
+alertmanager:
+  annotations: {{ prometheus_annotations_alertmanager }}
+grafana:
+  enabled: {{ prometheus_grafana_enable | to_json }}
+  defaultDashboardsEnabled: {{ prometheus_grafana_enable_default_dashboard | to_json }}
+  defaultDashboardsTimezone: {{ prometheus_grafana_dashboard_timezone }}
+  admin:
+    existingSecret: {{ prometheus_admin_secret }}
+    userKey: admin-user
+    passwordKey: admin-password

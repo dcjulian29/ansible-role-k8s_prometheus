@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ prometheus_admin_secret }}
+  namespace: {{ prometheus_namespace }}
+type: Opaque
+stringData:
+  admin-password: {{ prometheus_admin_pass }}
+  admin-user: {{ prometheus_admin_user }}

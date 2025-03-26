@@ -1,0 +1,57 @@
+---
+- name: Create Kubernetes namespace
+  kubernetes.core.k8s:
+    api_version: v1
+    context: "{{ k8s_context | default(omit) }}"
+    kind: namespace
+    kubeconfig: "{{ k8s_config | default(omit) }}"
+    name: "{{ prometheus_namespace }}"
+    state: present
+
+- name: Add helm repositories
+  kubernetes.core.helm_repository:
+    context: "{{ k8s_context | default(omit) }}"
+    kubeconfig: "{{ k8s_config | default(omit) }}"
+    name: "{{ item.name }}"
+    state: present
+    url: "{{ item.url }}"
+  loop: "{{ prometheus_helm_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Ensure administrative user secret is set
+  kubernetes.core.k8s:
+    context: "{{ k8s_context | default(omit) }}"
+    definition: "{{ lookup('template', 'adminuser.yaml.j2') | from_yaml }}"
+    kubeconfig: "{{ k8s_config | default(omit) }}"
+    state: present
+
+- name: Deploy Prometheus to cluster using chart
+  kubernetes.core.helm:
+    chart_ref: "{{ prometheus_chart_ref }}"
+    chart_version: "{{ prometheus_version }}"
+    context: "{{ k8s_context | default(omit) }}"
+    kubeconfig: "{{ k8s_config | default(omit) }}"
+    name: "{{ prometheus_name }}"
+    namespace: "{{ prometheus_namespace }}"
+    update_repo_cache: true
+    values: "{{ lookup('template', 'values.yaml.j2') | from_yaml }}"
+
+- name: Ensure traefik is configured to serve Grafana UI
+  kubernetes.core.k8s:
+    context: "{{ k8s_context | default(omit) }}"
+    definition: "{{ lookup('template', 'ingress.yaml.j2') | from_yaml }}"
+    kubeconfig: "{{ k8s_config | default(omit) }}"
+    state: present
+  when: prometheus_ui_expose
+
+- name: Deploy cAdvisor to cluster using chart
+  kubernetes.core.helm:
+    chart_ref: "{{ prometheus_chart_ref_cadvisor }}"
+    chart_version: "{{ prometheus_version_cadvisor }}"
+    context: "{{ k8s_context | default(omit) }}"
+    kubeconfig: "{{ k8s_config | default(omit) }}"
+    name: "{{ prometheus_name_cadvisor }}"
+    namespace: "{{ prometheus_namespace }}"
+    update_repo_cache: true
+  when: prometheus_cadvisor
