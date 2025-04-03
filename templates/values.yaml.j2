@@ -111,6 +111,29 @@ defaultRules:
     prometheusOperator: {{ prometheus_rule_group_annotations_prometheusoperator | to_yaml }}
 alertmanager:
   annotations: {{ prometheus_annotations_alertmanager }}
+alertmanagerSpec:
+  resources: 
+    requests:
+      memory: 400Mi
+kubeApiServer:
+  serviceMonitor:
+    metricRelabelings:
+      - action: drop
+        regex: apiserver_request_duration_seconds_bucket;(0.15|0.2|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2|3|3.5|4|4.5|6|7|8|9|15|25|40|50)
+prometheusOperator:
+  prometheusConfigReloader:
+    resources:
+      requests:
+        cpu: 200m
+        memory: 50Mi
+      limits:
+        cpu: 200m
+        memory: 50Mi
+  serviceMonitor:
+    selfMonitor: true
+    resources: 
+    requests:
+      memory: 400Mi
 grafana:
   enabled: {{ prometheus_grafana_enable | to_json }}
   defaultDashboardsEnabled: {{ prometheus_grafana_enable_default_dashboard | to_json }}
